@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liyan.mapper.MenuMapper">
+    <resultMap id="mymap" type="menu">
+        <id property="id" column="id"/>
+        <collection property="childre" select="com.liyan.mapper.MenuMapper.findByPid" column="id"/>
+    </resultMap>
+        <select id="findByPid" parameterType="menu" resultMap="mymap">
+            select * from menu where pid=#{0}
+        </select>
+</mapper>
